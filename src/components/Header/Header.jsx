@@ -19,7 +19,15 @@ const Header = () => {
         >
           Nannies
         </NavLink>
-        {/* <NavLink to="/favourites">Favourites</NavLink> */}
+        {(location.pathname === "/catalog" ||
+          location.pathname === "/favourites") && (
+          <NavLink
+            to="/favourites"
+            className={({ isActive }) => (isActive ? s.active : s.inactive)}
+          >
+            Favourites
+          </NavLink>
+        )}
       </div>
     </div>
   );
