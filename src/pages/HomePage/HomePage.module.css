@@ -1,4 +1,6 @@
 .homeCont {
+  width: 1376px;
+  padding: 32px;
   display: flex;
   justify-content: center;
   align-items: center;

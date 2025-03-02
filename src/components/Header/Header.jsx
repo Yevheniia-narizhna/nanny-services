@@ -18,10 +18,7 @@ const Header = () => {
     <div className={s.headerCont}>
       <img className={s.iconLogo} src="/logo-nanny.svg" alt="Logo" />
       <div className={s.navigation}>
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? s.active : s.inactive)}
-        >
+        <NavLink to="/" className={s.inactive}>
           Home
         </NavLink>
         <NavLink

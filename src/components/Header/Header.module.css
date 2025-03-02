@@ -1,4 +1,6 @@
 .headerCont {
+  padding-top: 32px;
+  padding-left: 32px;
   height: 88px;
   width: 1376px;
   position: fixed;
