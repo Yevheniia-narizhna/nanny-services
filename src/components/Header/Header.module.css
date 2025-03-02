@@ -1,13 +1,15 @@
 .headerCont {
   height: 88px;
-  width: 1440px;
+  width: 1376px;
   position: fixed;
   top: 0;
   z-index: 999;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #fbfbfb66;
+  justify-content: space-between;
 }
+
 .iconLogo {
   width: 164px;
   height: 28 px;
@@ -20,14 +22,40 @@
   gap: 32px;
 }
 .active {
-  color: #d84343;
+  position: relative;
+  display: inline-block;
+  color: #fbfbfb;
+}
+.active::after {
+  position: absolute;
+  content: "●";
+  color: #fbfbfb;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -12px;
 }
 .inactive {
-  color: #101828;
+  color: #fbfbfb;
 }
-
-@media screen and (min-width: 1440px) {
+.btnCont {
+  display: flex;
+  gap: 8px;
+  margin-right: 96px;
+}
+.btnLog,
+.btnReg {
+  background: transparent;
+  padding: 14px 40px;
+  border: 1px solid #fbfbfb66;
+  border-radius: 30px;
+  color: #fbfbfb;
+}
+.activeBtn {
+  background-color: #103931;
+  border: none;
+}
+/* @media screen and (min-width: 1440px) {
   .headerCont {
     width: 100vw;
   }
-}
+} */
