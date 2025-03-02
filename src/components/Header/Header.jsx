@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import s from "./Header.module.css";
 
 const Header = () => {
+  const location = useLocation();
   return (
     <div className={s.headerCont}>
       <img className={s.iconLogo} src="/logo-nanny.svg" alt="Logo" />
@@ -14,20 +15,11 @@ const Header = () => {
         </NavLink>
         <NavLink
           to="/catalog"
-          className={({ isActive }) =>
-            isActive && !isDetailsPage ? s.active : s.inactive
-          }
+          className={({ isActive }) => (isActive ? s.active : s.inactive)}
         >
           Nannies
         </NavLink>
-        <NavLink
-          to="/favourites"
-          className={({ isActive }) =>
-            isActive && !isDetailsPage ? s.active : s.inactive
-          }
-        >
-          Favourites
-        </NavLink>
+        {/* <NavLink to="/favourites">Favourites</NavLink> */}
       </div>
     </div>
   );

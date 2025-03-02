@@ -1,0 +1,32 @@
+.headerCont {
+  height: 72px;
+  width: 1440px;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+}
+.iconLogo {
+  width: 136px;
+  height: 16px;
+  padding-left: 64px;
+}
+
+.navigation {
+  padding-left: 450px;
+  display: flex;
+  gap: 32px;
+}
+.active {
+  color: #d84343;
+}
+.inactive {
+  color: #101828;
+}
+
+@media screen and (min-width: 1440px) {
+  .headerCont {
+    width: 100vw;
+  }
+}

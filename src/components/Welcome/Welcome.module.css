@@ -1,0 +1,19 @@
+.welcomeCont {
+  display: flex;
+  align-items: center;
+  width: 1376px;
+  height: 736px;
+  border-radius: 30px;
+  background-color: #103931;
+  background-image: image-set(
+    url("/src/img/Rectangle-x2.jpg") 2x,
+    url("/src/img/Rectangle-x1.jpg") 1x
+  );
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+.contText {
+  width: 677px;
+}
+.contImg {
+}
