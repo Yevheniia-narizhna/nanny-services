@@ -2,5 +2,19 @@
   max-width: 1376px;
   margin: 0 auto;
   padding: 0;
-  text-align: center;
+  text-align: start;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  font-weight: normal;
+  font-weight: 400;
+  src: url("./fonts/HelveticaNeueCyr-Roman.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  font-weight: medium;
+  font-weight: 500;
+  src: url("./fonts/HelveticaNeueCyr-Medium.ttf") format("truetype");
 }

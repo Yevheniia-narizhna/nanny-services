@@ -13,7 +13,28 @@
   background-repeat: no-repeat;
 }
 .contText {
-  width: 677px;
+  width: 517px;
+  margin-left: 96px;
 }
 .contImg {
+}
+
+.title {
+  letter-spacing: -0.03em;
+  margin: 0 auto;
+  padding-bottom: 28px;
+}
+.textWelc {
+  color: #fbfbfb;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  padding-bottom: 64px;
+}
+.btnWelc {
+  background: transparent;
+  padding: 18px 50px;
+  border: 1px solid #fbfbfb66;
+  border-radius: 30px;
+  color: #fbfbfb;
+  font-size: 20px;
 }
