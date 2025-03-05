@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import s from "./Welcome.module.css";
+import { GoArrowUpRight } from "react-icons/go";
 
 const Welcome = () => {
   const navCatalog = useNavigate();
@@ -14,6 +15,7 @@ const Welcome = () => {
         <p className={s.textWelc}>Find Babysitters Online for All Occasions</p>
         <button type="button" className={s.btnWelc} onClick={toCatalog}>
           Get started
+          <GoArrowUpRight className={s.iconWelc} size={32} />
         </button>
       </div>
       <div className={s.contImg}></div>
