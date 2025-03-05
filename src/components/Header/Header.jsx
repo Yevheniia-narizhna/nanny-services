@@ -3,6 +3,7 @@ import s from "./Header.module.css";
 import { useState } from "react";
 import Login from "../Login/Login";
 import Registration from "../Registration/Registration";
+import { IoCloseOutline } from "react-icons/io5";
 
 const Header = () => {
   const location = useLocation();
@@ -60,8 +61,11 @@ const Header = () => {
       {isModalOpen && (
         <div className={s.modalOverlay} onClick={() => setIsModalOpen(false)}>
           <div className={s.modalContent} onClick={(e) => e.stopPropagation()}>
+            <div className={s.closeIcon}>
+              <IoCloseOutline onClick={() => setIsModalOpen(false)} />
+            </div>
+
             <h2>{activeButton === "login" ? <Login /> : <Registration />}</h2>
-            <button onClick={() => setIsModalOpen(false)}>Закрити</button>
           </div>
         </div>
       )}
