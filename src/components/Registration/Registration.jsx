@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { auth } from "../../../firebaseConfig";
-// import { auth } from "./firebaseConfig.js";
+import s from "./Registration.module.css";
 
 const schema = yup.object().shape({
   name: yup
@@ -42,17 +42,34 @@ const Registration = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="Ім'я" {...register("name")} />
+      <form onSubmit={handleSubmit(onSubmit)} className={s.formReg}>
+        <input
+          type="text"
+          placeholder="Name"
+          {...register("name")}
+          className={s.formRegInp}
+        />
         {errors.name && <p>{errors.name.message}</p>}
 
-        <input type="email" placeholder="Email" {...register("email")} />
+        <input
+          type="email"
+          placeholder="Email"
+          {...register("email")}
+          className={s.formRegInp}
+        />
         {errors.email && <p>{errors.email.message}</p>}
 
-        <input type="password" placeholder="Пароль" {...register("password")} />
+        <input
+          type="password"
+          placeholder="Password"
+          {...register("password")}
+          className={s.formRegInp}
+        />
         {errors.password && <p>{errors.password.message}</p>}
 
-        <button type="submit">Зареєструватися</button>
+        <button type="submit" className={s.btnRegist}>
+          Sign Up
+        </button>
       </form>
     </div>
   );
