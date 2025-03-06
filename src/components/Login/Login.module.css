@@ -1,29 +1,24 @@
-.formReg {
+.formLog {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
-.formRegInp {
-  /* height: 52px; */
+
+.textLog {
+  padding-bottom: 40px;
+  padding-top: 20px;
+}
+.formLogInp {
   padding: 16px 18px;
   border-radius: 12px;
   border: 1px solid #11101c1a;
   font-size: 16px;
   outline: none;
 }
-.formRegInp::placeholder {
-  color: #11101c;
-  opacity: 1;
-}
-
-.btnRegist {
+.btnLog {
   background-color: #103931;
   height: 52px;
   border-radius: 30px;
   color: #fbfbfb;
   margin-top: 22px;
-}
-.textReg {
-  padding-bottom: 40px;
-  padding-top: 20px;
 }
