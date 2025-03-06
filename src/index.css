@@ -2,7 +2,7 @@
   font-family: Helvetica Neue, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  font-size: 16px;
   color-scheme: light dark;
   color: #11101c;
   background-color: #f3f3f3;
@@ -42,7 +42,10 @@ input {
   margin-block-start: 0;
   margin-block-end: 0;
 }
-
+p {
+  font-size: 16px;
+  color: #11101c80;
+}
 ul,
 li {
   list-style: none;

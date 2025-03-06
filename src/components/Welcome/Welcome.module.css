@@ -36,7 +36,8 @@
   justify-content: center;
   gap: 10px;
   background: transparent;
-  padding: 18px 50px;
+  width: 232px;
+  height: 60px;
   border: 1px solid #fbfbfb66;
   border-radius: 30px;
   color: #fbfbfb;

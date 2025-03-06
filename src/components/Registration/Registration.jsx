@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { auth } from "../../../firebaseConfig";
 import s from "./Registration.module.css";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   name: yup
@@ -17,7 +18,9 @@ const schema = yup.object().shape({
     .min(8, "Password must be at least 8 characters"),
 });
 
-const Registration = () => {
+const Registration = ({ setIsModalOpen }) => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -34,6 +37,8 @@ const Registration = () => {
         data.password
       );
       await updateProfile(userCredential.user, { displayName: data.name });
+      setIsModalOpen(false);
+      navigate("/catalog");
       // alert("Реєстрація успішна!");
     } catch (error) {
       // alert(error.message);
@@ -42,6 +47,11 @@ const Registration = () => {
 
   return (
     <div>
+      <h2>Registration</h2>
+      <p className={s.textReg}>
+        Thank you for your interest in our platform! In order to register, we
+        need some information. Please provide us with the following information.
+      </p>
       <form onSubmit={handleSubmit(onSubmit)} className={s.formReg}>
         <input
           type="text"
