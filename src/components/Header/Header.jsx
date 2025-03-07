@@ -69,7 +69,7 @@ const Header = () => {
             </button>
           </div>
         ) : (
-          <div>
+          <div className={s.contLogReg}>
             <button
               type="button"
               className={`${s.btnLog} ${

@@ -14,7 +14,7 @@
 
 .iconLogo {
   width: 164px;
-  height: 28 px;
+  height: 28px;
   padding-left: 96px;
 }
 
@@ -92,4 +92,8 @@
 .catalogHeader {
   background-color: #103931;
   width: 100%;
+}
+.contLogReg {
+  display: flex;
+  gap: 8px;
 }
