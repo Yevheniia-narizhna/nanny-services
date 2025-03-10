@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import s from "./Welcome.module.css";
 import { GoArrowUpRight } from "react-icons/go";
 
-const Welcome = () => {
+const Welcome = ({ nanniesCount }) => {
   const navCatalog = useNavigate();
 
   const toCatalog = () => {
@@ -18,7 +18,9 @@ const Welcome = () => {
           <GoArrowUpRight className={s.iconWelc} size={32} />
         </button>
       </div>
-      <div className={s.contImg}></div>
+      <div className={s.contImg}>
+        <div>Experienced nannies {nanniesCount}</div>
+      </div>
     </div>
   );
 };
