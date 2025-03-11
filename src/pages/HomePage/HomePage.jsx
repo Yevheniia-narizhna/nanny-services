@@ -1,9 +1,10 @@
 import Welcome from "../../components/Welcome/Welcome";
 import s from "./HomePage.module.css";
-const HomePage = () => {
+
+const HomePage = ({ nanniesCount }) => {
   return (
     <div className={s.homeCont}>
-      <Welcome />
+      <Welcome nanniesCount={nanniesCount} />
     </div>
   );
 };
