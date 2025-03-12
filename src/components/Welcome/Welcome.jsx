@@ -44,9 +44,15 @@ const Welcome = () => {
       </div>
       <div className={s.contImg}>
         <div className={s.contCount}>
-          <p>
-            Experienced nannies <span>{nanniesCount}</span>
-          </p>
+          <div className={s.contsvg}>
+            <svg className={s.svgCheck}>
+              <use href="/symbol-defs.svg#icon-feCheck0"></use>
+            </svg>
+          </div>
+          <div className={s.expNannCont}>
+            <p className={s.expNann}>Experienced nannies</p>
+            <p className={s.expNannCount}>{nanniesCount}</p>
+          </div>
         </div>
       </div>
     </div>

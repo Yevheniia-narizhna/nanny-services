@@ -35,6 +35,9 @@
   background-repeat: no-repeat;
   height: 736px;
   width: 699px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .title {
@@ -70,9 +73,37 @@
 .contCount {
   display: flex;
   background-color: #fbfbfb;
-  width: 284px;
-  height: 118px;
+  /* width: 284px;
+  height: 118px; */
   border-radius: 20px;
   align-items: center;
-  margin-right: ;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  padding: 32px;
+}
+.contsvg {
+  background-color: #103931;
+  width: 54px;
+  height: 54px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.svgCheck {
+  width: 25px;
+  height: 20px;
+}
+.expNannCont {
+  display: flex;
+  flex-direction: column;
+  padding-left: 16px;
+}
+/* .expNann {
+  padding-left: 16px;
+} */
+.expNannCount {
+  font-size: 24px;
+  font-weight: 700;
+  color: #11101c;
 }
