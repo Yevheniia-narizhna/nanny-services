@@ -41,3 +41,20 @@ export const fetchNanniesCount = (callback, errorCallback) => {
     }
   );
 };
+
+export function getAge(birthday) {
+  const birthDate = new Date(birthday);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  // Перевіряємо, чи вже був день народження цього року
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (
+    monthDiff < 0 ||
+    (monthDiff === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
+}

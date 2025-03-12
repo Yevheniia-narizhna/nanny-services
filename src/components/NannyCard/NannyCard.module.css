@@ -1,0 +1,25 @@
+.card {
+  background-color: #fbfbfb;
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.cardImg {
+  width: 96px;
+  height: 96px;
+  border: 2px solid #10393133;
+  border-radius: 30px;
+  padding: 12px;
+}
+
+.svgLoc {
+  fill: #fbfbfb;
+  stroke: #11101c;
+  width: 16px;
+  height: 16px;
+}
+.svgRat {
+  fill: #ffc531;
+  width: 16px;
+  height: 16px;
+}
