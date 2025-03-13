@@ -46,22 +46,34 @@ const NannyCard = ({ nanny }) => {
             <use href="/symbol-defs.svg#icon-Property-1Normal"></use>
           </svg>
         </button>
-        <h3>{nanny.name}</h3>
-        <ul>
-          <li>Age: {age}</li>
-          <li>Experience: {nanny.experience}</li>
-          <li>Kids Age: {nanny.kids_age}</li>
+        <h3 className={s.name}>{nanny.name}</h3>
+        <ul className={s.ulDetails}>
+          <li>
+            Age: <span className={s.spanDet}>{age}</span>
+          </li>
+          <li>
+            Experience: <span className={s.spanDet}>{nanny.experience}</span>
+          </li>
+          <li>
+            Kids Age: <span className={s.spanDet}>{nanny.kids_age}</span>
+          </li>
           <li>
             Characters:{" "}
-            {nanny.characters
-              .map((char) => char.charAt(0).toUpperCase() + char.slice(1))
-              .join(", ")}
+            <span className={s.spanDet}>
+              {nanny.characters
+                .map((char) => char.charAt(0).toUpperCase() + char.slice(1))
+                .join(", ")}
+            </span>
           </li>
-          <li>Education: {nanny.education}</li>
+          <li>
+            Education: <span className={s.spanDet}>{nanny.education}</span>
+          </li>
         </ul>
-        <p>{nanny.about}</p>
+        <p className={s.about}>{nanny.about}</p>
         {!showReviews && (
-          <button onClick={handleClick}>Read more</button> // Кнопка "Read more"
+          <button onClick={handleClick} className={s.btnRMore}>
+            Read more
+          </button> // Кнопка "Read more"
         )}
         {showReviews && (
           <div className={s.revCont}>

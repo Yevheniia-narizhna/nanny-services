@@ -57,3 +57,41 @@
   width: 16px;
   height: 16px;
 }
+.name {
+  paddiin-top: 8px;
+  padding-bottom: 24px;
+}
+.ulDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 24px;
+}
+.ulDetails li {
+  background-color: #f3f3f3;
+  padding: 8px 16px 8px 16px;
+  border-radius: 24px;
+  color: #8a8a89;
+  font-weight: 500;
+}
+.spanDet {
+  font-weight: 500;
+  color: #11101c;
+}
+.about {
+  padding-bottom: 14px;
+}
+.btnRMore {
+  background-color: transparent;
+  padding: 0;
+  position: relative;
+}
+.btnRMore::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #11101c;
+}
