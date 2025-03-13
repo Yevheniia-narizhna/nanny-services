@@ -1,7 +1,11 @@
 import { GoStarFill } from "react-icons/go";
 import s from "./Reviews.module.css";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
 
 const Reviews = ({ reviews }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   if (!reviews || reviews.length === 0) {
     return <p>No reviews available</p>;
   }
@@ -25,7 +29,10 @@ const Reviews = ({ reviews }) => {
           </div>
         ))}
       </div>
-      <button className={s.btnRew}>Make an appointment</button>
+      <button className={s.btnRew} onClick={() => setIsOpen(true)}>
+        Make an appointment
+      </button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };
