@@ -64,50 +64,67 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
           below so we can match you with the perfect care partner.
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-          <input {...register("address")} placeholder="Address" />
-          <p className={s.error}>{errors.address?.message}</p>
+          <div className={s.formCont}>
+            <div className={s.formContFirst}>
+              <input {...register("address")} placeholder="Address" />
+              <p className={s.error}>{errors.address?.message}</p>
 
-          <input type="tel" {...register("phone")} placeholder="+380" />
-          <p className={s.error}>{errors.phone?.message}</p>
-
-          <input
-            type="number"
-            {...register("childAge")}
-            placeholder="Child's Age"
-          />
-          <p className={s.error}>{errors.childAge?.message}</p>
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <div className={s.timePickerCont}>
-              <div className={s.timePickerWrapp}>
-                {/* Іконка годинника, при натисканні відкривається вибір часу */}
-                <FaClock className={s.clockIcon} onClick={handleIconClick} />
-
-                {/* Якщо isTimePickerOpen true, показуємо MultiSectionDigitalClock */}
-                {isTimePickerOpen && (
-                  <div className={s.timePicker}>
-                    <p className={s.timePickerText}>Meeting time</p>
-                    <DigitalClock
-                      value={selectedTime}
-                      onChange={handleTimeChange}
-                      ampm={false}
-                    />
-                  </div>
-                )}
-              </div>
+              <input
+                type="number"
+                {...register("childAge")}
+                placeholder="Child's Age"
+              />
+              <p className={s.error}>{errors.childAge?.message}</p>
             </div>
-          </LocalizationProvider>
-          <input type="email" {...register("email")} placeholder="Email" />
-          <p className={s.error}>{errors.email?.message}</p>
+            <div className={s.formContSecond}>
+              <input type="tel" {...register("phone")} placeholder="+380" />
+              <p className={s.error}>{errors.phone?.message}</p>
 
-          <input
-            {...register("name")}
-            placeholder="Father's or mother's name"
-          />
-          <p className={s.error}>{errors.name?.message}</p>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <div className={s.timePickerCont}>
+                  <div className={s.timePickerWrapp}>
+                    <input
+                      className={s.timeInput}
+                      value={selectedTime.format("HH:mm")} // Виводимо вибраний час в форматі "HH:mm"
+                      onClick={handleIconClick} // Відкриває вибір часу при натисканні
+                      readOnly
+                    />
+                    {/* Іконка годинника, при натисканні відкривається вибір часу */}
+                    <FaClock
+                      className={s.clockIcon}
+                      onClick={handleIconClick}
+                    />
 
-          <textarea {...register("comment")} placeholder="Comment" />
-          <p className={s.error}>{errors.comment?.message}</p>
+                    {/* Якщо isTimePickerOpen true, показуємо MultiSectionDigitalClock */}
+                    {isTimePickerOpen && (
+                      <div className={s.timePicker}>
+                        <p className={s.timePickerText}>Meeting time</p>
+                        <DigitalClock
+                          className={s.timePickerD}
+                          value={selectedTime}
+                          onChange={handleTimeChange}
+                          ampm={false}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </LocalizationProvider>
+            </div>
+          </div>
+          <div>
+            <input type="email" {...register("email")} placeholder="Email" />
+            <p className={s.error}>{errors.email?.message}</p>
+
+            <input
+              {...register("name")}
+              placeholder="Father's or mother's name"
+            />
+            <p className={s.error}>{errors.name?.message}</p>
+
+            <textarea {...register("comment")} placeholder="Comment" />
+            <p className={s.error}>{errors.comment?.message}</p>
+          </div>
 
           <button type="submit">Send</button>
         </form>
