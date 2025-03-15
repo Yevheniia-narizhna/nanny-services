@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TimePicker from "react-time-picker";
 import { useState } from "react";
-import { FaClock } from "react-icons/fa";
+import { FaClock, FaRegClock } from "react-icons/fa";
 import DateTimePicker from "react-datetime-picker";
 import dayjs from "dayjs";
 
@@ -18,7 +18,10 @@ const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
   phone: yup
     .string()
-    .matches(/^\+?\d{10,14}$/, "Invalid phone number")
+    .matches(
+      /^(\+380\d{9})$/,
+      "Номер телефону має бути у форматі +380XXXXXXXXX"
+    )
     .required("Phone is required"),
   address: yup.string().required("Address is required"),
   childAge: yup
@@ -57,8 +60,8 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
         <button onClick={onClose} className={s.btnModal}>
           Close
         </button>
-        <h2>Make an appointment with a babysitter</h2>
-        <p>
+        <h2 className={s.title}>Make an appointment with a babysitter</h2>
+        <p className={s.text}>
           Arranging a meeting with a caregiver for your child is the first step
           to creating a safe and comfortable environment. Fill out the form
           below so we can match you with the perfect care partner.
@@ -90,7 +93,7 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
                       readOnly
                     />
                     {/* Іконка годинника, при натисканні відкривається вибір часу */}
-                    <FaClock
+                    <FaRegClock
                       className={s.clockIcon}
                       onClick={handleIconClick}
                     />
