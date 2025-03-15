@@ -25,22 +25,24 @@ const NannyCard = ({ nanny }) => {
         <img src={nanny.avatar_url} alt={nanny.name} className={s.cardImg} />
       </div>
       <div>
-        <p>Nanny</p>
-        <ul className={s.ulLoc}>
-          <li className={s.liLoc}>
-            <svg className={s.svgLoc}>
-              <use href="/symbol-defs.svg#icon-map-pin"></use>
-            </svg>
-            <span>{nanny.location}</span>
-          </li>
-          <li className={s.liRat}>
-            <GoStarFill className={s.svgRat} />
-            <span>Rating: {nanny.rating}</span>
-          </li>
-          <li className={s.liPr}>
-            <span>Price / 1 hour: ${nanny.price_per_hour}</span>
-          </li>
-        </ul>
+        <div className={s.contNannLocRat}>
+          <p>Nanny</p>
+          <ul className={s.ulLoc}>
+            <li className={s.liLoc}>
+              <svg className={s.svgLoc}>
+                <use href="/symbol-defs.svg#icon-map-pin"></use>
+              </svg>
+              <span>{nanny.location}</span>
+            </li>
+            <li className={s.liRat}>
+              <GoStarFill className={s.svgRat} />
+              <span>Rating: {nanny.rating}</span>
+            </li>
+            <li className={s.liPr}>
+              <span>Price / 1 hour: ${nanny.price_per_hour}</span>
+            </li>
+          </ul>
+        </div>
         <button className={s.btnFav}>
           <svg className={s.svgFav}>
             <use href="/symbol-defs.svg#icon-Property-1Normal"></use>
@@ -77,7 +79,7 @@ const NannyCard = ({ nanny }) => {
         )}
         {showReviews && (
           <div className={s.revCont}>
-            <Reviews reviews={nanny.reviews} />
+            <Reviews reviews={nanny.reviews} nanny={nanny} />
           </div>
         )}
       </div>

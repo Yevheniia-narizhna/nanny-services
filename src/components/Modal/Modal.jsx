@@ -20,7 +20,7 @@ const schema = yup.object().shape({
     .string()
     .matches(
       /^(\+380\d{9})$/,
-      "Номер телефону має бути у форматі +380XXXXXXXXX"
+      "The phone number must be in the format +380XXXXXXXXX"
     )
     .required("Phone is required"),
   address: yup.string().required("Address is required"),
@@ -34,7 +34,7 @@ const schema = yup.object().shape({
   comment: yup.string().required("Comment is required"),
 });
 
-const Modal = ({ isOpen, onClose, onSubmit }) => {
+const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
   const [selectedTime, setSelectedTime] = useState(dayjs("2022-04-17T15:30"));
   const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
@@ -66,6 +66,13 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
           to creating a safe and comfortable environment. Fill out the form
           below so we can match you with the perfect care partner.
         </p>
+        <div className={s.contNanny}>
+          <img src={nanny.avatar_url} alt={nanny.name} className={s.nannyImg} />
+          <div className={s.contNannyText}>
+            <p>Your nanny</p>
+            <h3>{nanny.name}</h3>
+          </div>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
           <div className={s.formCont}>
             <div className={s.formContFirst}>
@@ -80,7 +87,19 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
               <p className={s.error}>{errors.childAge?.message}</p>
             </div>
             <div className={s.formContSecond}>
-              <input type="tel" {...register("phone")} placeholder="+380" />
+              <input
+                type="tel"
+                {...register("phone")}
+                placeholder="+380"
+                onChange={(e) => {
+                  let value = e.target.value.replace(/\D/g, ""); // Видаляємо всі нецифрові символи
+                  if (!value.startsWith("380")) {
+                    value = "380" + value.replace(/^380/, ""); // Додаємо 380, якщо його немає
+                  }
+                  e.target.value = "+" + value;
+                  setValue("phone", "+" + value, { shouldValidate: true }); // Оновлюємо значення для React Hook Form
+                }}
+              />
               <p className={s.error}>{errors.phone?.message}</p>
 
               <LocalizationProvider dateAdapter={AdapterDayjs}>

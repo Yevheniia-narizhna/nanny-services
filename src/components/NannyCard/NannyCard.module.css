@@ -6,12 +6,17 @@
   display: flex;
   gap: 24px;
 }
+.contNannLocRat {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 74px;
+}
 .ulLoc {
   display: flex;
   gap: 16px;
-  position: absolute;
+  /* position: absolute;
   top: 24px;
-  right: 98px;
+  right: 98px; */
 }
 .liRat,
 .liLoc,

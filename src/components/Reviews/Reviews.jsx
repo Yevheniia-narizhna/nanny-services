@@ -3,7 +3,7 @@ import s from "./Reviews.module.css";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 
-const Reviews = ({ reviews }) => {
+const Reviews = ({ reviews, nanny }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   if (!reviews || reviews.length === 0) {
@@ -32,7 +32,7 @@ const Reviews = ({ reviews }) => {
       <button className={s.btnRew} onClick={() => setIsOpen(true)}>
         Make an appointment
       </button>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <Modal isOpen={isOpen} nanny={nanny} onClose={() => setIsOpen(false)} />
     </div>
   );
 };
