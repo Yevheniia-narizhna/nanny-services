@@ -4,23 +4,24 @@ import NannyCard from "../NannyCard/NannyCard";
 import { fetchNannies } from "../../utils/nannies";
 import { IoIosArrowDown } from "react-icons/io";
 import Select from "react-select";
+import Filter, { filterOptions } from "../Filter/Filter";
 
-const filterOptions = [
-  { value: "alphabet-asc", label: "A to Z" },
-  { value: "alphabet-desc", label: "Z to A" },
-  { value: "rating-asc", label: "Not popular" },
-  { value: "rating-desc", label: "Popular" },
-  { value: "price-less", label: "Less than 10$" },
-  { value: "price-greater", label: "Greater than 10$" },
-  { value: "show-all", label: "Show all" },
-];
+// const filterOptions = [
+//   { value: "alphabet-asc", label: "A to Z" },
+//   { value: "alphabet-desc", label: "Z to A" },
+//   { value: "rating-asc", label: "Not popular" },
+//   { value: "rating-desc", label: "Popular" },
+//   { value: "price-less", label: "Less than 10$" },
+//   { value: "price-greater", label: "Greater than 10$" },
+//   { value: "show-all", label: "Show all" },
+// ];
 
 const NanniesList = () => {
   const [nannies, setNannies] = useState([]);
   const [filteredNannies, setFilteredNannies] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState(filterOptions[0].value);
   const [visibleCount, setVisibleCount] = useState(3); // Початково показуємо 3 нянь
-  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  // const [isSelectOpen, setIsSelectOpen] = useState(false);
 
   useEffect(() => {
     fetchNannies((data) => {
@@ -61,59 +62,17 @@ const NanniesList = () => {
     setVisibleCount((prev) => prev + 3);
   };
 
-  const toggleSelectOpen = () => {
-    setIsSelectOpen((prev) => !prev);
-  };
+  // const toggleSelectOpen = () => {
+  //   setIsSelectOpen((prev) => !prev);
+  // };
 
   return (
     <div className={s.listCont}>
       <div className={s.filter}>
-        <p>Filter</p>
-        <Select
-          options={filterOptions}
-          onChange={handleFilterChange}
-          value={
-            filterOptions.find((option) => option.value === selectedFilter) ||
-            null
-          }
-          menuIsOpen={isSelectOpen}
-          onMenuOpen={() => setIsSelectOpen(true)}
-          onMenuClose={() => setIsSelectOpen(false)}
-          styles={{
-            control: (base) => ({
-              ...base,
-              backgroundColor: "#103931",
-              borderRadius: "14px",
-              border: "none",
-              padding: "5px",
-              boxShadow: "none",
-              borderColor: "transparent",
-            }),
-            singleValue: (base) => ({
-              ...base,
-              color: "#FBFBFB",
-            }),
-            indicatorsContainer: (base) => ({
-              ...base,
-              display: "none", // Прибирає стрілку
-            }),
-            option: (base, { isSelected }) => ({
-              ...base,
-              backgroundColor: "transparent",
-              color: isSelected
-                ? "##11101C" // Колір тексту для вибраного елемента
-                : "#11101C4D", // Колір тексту для звичайного стану
-              cursor: "pointer",
-            }),
-            menu: (base) => ({
-              ...base,
-              backgroundColor: "#FFFFFF",
-              borderRadius: "14px",
-              marginTop: "8px",
-            }),
-          }}
+        <Filter
+          selectedFilter={selectedFilter}
+          onFilterChange={handleFilterChange}
         />
-        <IoIosArrowDown className={s.filterIcon} onClick={toggleSelectOpen} />
       </div>
       <div className={s.listContBtn}>
         <ul className={s.list}>

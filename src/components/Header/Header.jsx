@@ -14,7 +14,7 @@ const Header = () => {
   const [user, setUser] = useState(null);
 
   const isCatalogPage =
-    location.pathname === "/catalog" || location.pathname === "/favourites";
+    location.pathname === "/catalog" || location.pathname === "/favorites";
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -47,12 +47,12 @@ const Header = () => {
         </NavLink>
         {user &&
           (location.pathname === "/catalog" ||
-            location.pathname === "/favourites") && (
+            location.pathname === "/favorites") && (
             <NavLink
-              to="/favourites"
+              to="/favorites"
               className={({ isActive }) => (isActive ? s.active : s.inactive)}
             >
-              Favourites
+              Favorites
             </NavLink>
           )}
       </div>

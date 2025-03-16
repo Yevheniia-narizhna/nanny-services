@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
 import NanniesPage from "./pages/NanniesPage/NanniesPage";
-import FavouritesPage from "./pages/FavouritesPage/FavouritesPage";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<NanniesPage />} />
-        <Route path="/favourites" element={<FavouritesPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
     </>
   );
