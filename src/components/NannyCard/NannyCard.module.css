@@ -31,6 +31,12 @@
   padding-left: 16px;
   padding-right: 16px;
 }
+.liPr p {
+  color: #11101c;
+}
+.liPr span {
+  color: #38cd3e;
+}
 .btnFav {
   position: absolute;
   top: 24px;

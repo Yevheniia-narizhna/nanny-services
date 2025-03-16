@@ -5,29 +5,29 @@ import { fetchNannies } from "../../utils/nannies";
 import { IoIosArrowDown } from "react-icons/io";
 import Select from "react-select";
 
+const filterOptions = [
+  { value: "alphabet-asc", label: "A to Z" },
+  { value: "alphabet-desc", label: "Z to A" },
+  { value: "rating-asc", label: "Not popular" },
+  { value: "rating-desc", label: "Popular" },
+  { value: "price-less", label: "Less than 10$" },
+  { value: "price-greater", label: "Greater than 10$" },
+  { value: "show-all", label: "Show all" },
+];
+
 const NanniesList = () => {
   const [nannies, setNannies] = useState([]);
   const [filteredNannies, setFilteredNannies] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState(filterOptions[0].value);
   const [visibleCount, setVisibleCount] = useState(3); // Початково показуємо 3 нянь
   const [isSelectOpen, setIsSelectOpen] = useState(false);
+
   useEffect(() => {
     fetchNannies((data) => {
       setNannies(data);
       setFilteredNannies(data);
     }, console.error);
   }, []);
-
-  // Опції для react-select
-  const filterOptions = [
-    { value: "alphabet-asc", label: "A → Z" },
-    { value: "alphabet-desc", label: "Z → A" },
-    { value: "rating-asc", label: "Rating ⬆" },
-    { value: "rating-desc", label: "Rating ⬇" },
-    { value: "price-less", label: "Less than 10$" },
-    { value: "price-greater", label: "Greater than 10$" },
-    { value: "show-all", label: "Show All" },
-  ];
 
   const handleFilterChange = (selectedOption) => {
     let updatedNannies = [...nannies];
@@ -53,7 +53,7 @@ const NanniesList = () => {
     }
 
     setFilteredNannies(updatedNannies);
-    setSelectedFilter(selectedOption.value);
+    setSelectedFilter(selectedOption ? selectedOption.value : null);
     setVisibleCount(3);
   };
 
@@ -72,13 +72,46 @@ const NanniesList = () => {
         <Select
           options={filterOptions}
           onChange={handleFilterChange}
-          value={filterOptions.find(
-            (option) => option.value === selectedFilter
-          )}
-          className={s.reactSelect}
-          menuIsOpen={isSelectOpen} // Прив'язка до стану відкриття
-          onMenuOpen={() => setIsSelectOpen(true)} // Відкривається список
-          onMenuClose={() => setIsSelectOpen(false)} // Закривається список
+          value={
+            filterOptions.find((option) => option.value === selectedFilter) ||
+            null
+          }
+          menuIsOpen={isSelectOpen}
+          onMenuOpen={() => setIsSelectOpen(true)}
+          onMenuClose={() => setIsSelectOpen(false)}
+          styles={{
+            control: (base) => ({
+              ...base,
+              backgroundColor: "#103931",
+              borderRadius: "14px",
+              border: "none",
+              padding: "5px",
+              boxShadow: "none",
+              borderColor: "transparent",
+            }),
+            singleValue: (base) => ({
+              ...base,
+              color: "#FBFBFB",
+            }),
+            indicatorsContainer: (base) => ({
+              ...base,
+              display: "none", // Прибирає стрілку
+            }),
+            option: (base, { isSelected }) => ({
+              ...base,
+              backgroundColor: "transparent",
+              color: isSelected
+                ? "##11101C" // Колір тексту для вибраного елемента
+                : "#11101C4D", // Колір тексту для звичайного стану
+              cursor: "pointer",
+            }),
+            menu: (base) => ({
+              ...base,
+              backgroundColor: "#FFFFFF",
+              borderRadius: "14px",
+              marginTop: "8px",
+            }),
+          }}
         />
         <IoIosArrowDown className={s.filterIcon} onClick={toggleSelectOpen} />
       </div>

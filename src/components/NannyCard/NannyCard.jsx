@@ -39,7 +39,9 @@ const NannyCard = ({ nanny }) => {
               <span>Rating: {nanny.rating}</span>
             </li>
             <li className={s.liPr}>
-              <span>Price / 1 hour: ${nanny.price_per_hour}</span>
+              <p>
+                Price / 1 hour: <span>${nanny.price_per_hour}</span>
+              </p>
             </li>
           </ul>
         </div>

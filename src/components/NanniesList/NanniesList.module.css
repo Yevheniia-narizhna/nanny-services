@@ -15,7 +15,7 @@
   max-width: 226px;
   position: relative;
 }
-.filter select {
+/* .filter options {
   width: 226px;
   height: 48px;
   border-radius: 14px;
@@ -27,20 +27,20 @@
   border: none;
   appearance: none;
   outline: none;
-}
+} */
 .filterIcon {
   position: absolute;
   top: 40px;
   right: 18px;
-  fill: #fbfbfb;
+  fill: #fbfbfb !important;
   width: 16px;
   height: 16px;
   cursor: pointer;
   pointer-events: all;
 }
-.filter option {
+/* .filter option {
   background-color: #ffffff;
   width: 226px;
   border: none;
   color: #11101c4d;
-}
+} */
