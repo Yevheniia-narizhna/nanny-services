@@ -28,7 +28,18 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+body {
+  overflow: auto; /* Для всіх браузерів */
+}
 
+body::-webkit-scrollbar {
+  width: 8px; /* Ширина скролбару */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* Колір скролбару */
+  border-radius: 10px; /* Краї скролбару */
+}
 h1 {
   font-size: 70px;
   line-height: 70px;

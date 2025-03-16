@@ -115,19 +115,21 @@ const NanniesList = () => {
         />
         <IoIosArrowDown className={s.filterIcon} onClick={toggleSelectOpen} />
       </div>
-      <ul className={s.list}>
-        {filteredNannies.slice(0, visibleCount).map((nanny) => (
-          <li key={nanny.name}>
-            <NannyCard nanny={nanny} />
-          </li>
-        ))}
-      </ul>
+      <div className={s.listContBtn}>
+        <ul className={s.list}>
+          {filteredNannies.slice(0, visibleCount).map((nanny) => (
+            <li key={nanny.name}>
+              <NannyCard nanny={nanny} />
+            </li>
+          ))}
+        </ul>
 
-      {visibleCount < filteredNannies.length && (
-        <button onClick={loadMore} className={s.loadMore}>
-          Load More
-        </button>
-      )}
+        {visibleCount < filteredNannies.length && (
+          <button onClick={loadMore} className={s.loadMore}>
+            Load More
+          </button>
+        )}
+      </div>
     </div>
   );
 };

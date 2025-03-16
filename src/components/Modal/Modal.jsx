@@ -3,15 +3,12 @@ import s from "./Modal.module.css";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import TimePicker from "react-time-picker";
 import { useState } from "react";
-import { FaClock, FaRegClock } from "react-icons/fa";
-import DateTimePicker from "react-datetime-picker";
+import { FaRegClock } from "react-icons/fa";
 import dayjs from "dayjs";
-
-import { MultiSectionDigitalClock } from "@mui/x-date-pickers/MultiSectionDigitalClock";
 import { DigitalClock, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { IoCloseOutline } from "react-icons/io5";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -57,9 +54,9 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
   return createPortal(
     <div className={s.modalOverlay} onClick={onClose}>
       <div className={s.modal} onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose} className={s.btnModal}>
-          Close
-        </button>
+        <div className={s.btnModal}>
+          <IoCloseOutline size={32} onClick={onClose} />
+        </div>
         <h2 className={s.title}>Make an appointment with a babysitter</h2>
         <p className={s.text}>
           Arranging a meeting with a caregiver for your child is the first step
@@ -107,7 +104,7 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
                   <div className={s.timePickerWrapp}>
                     <input
                       className={s.timeInput}
-                      value={selectedTime.format("HH:mm")} // Виводимо вибраний час в форматі "HH:mm"
+                      value={selectedTime.format("HH:mm") || "00:00"} // Виводимо вибраний час в форматі "HH:mm"
                       onClick={handleIconClick} // Відкриває вибір часу при натисканні
                       readOnly
                     />
@@ -121,9 +118,10 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
                     {isTimePickerOpen && (
                       <div className={s.timePicker}>
                         <p className={s.timePickerText}>Meeting time</p>
+
                         <DigitalClock
                           className={s.timePickerD}
-                          value={selectedTime}
+                          value={selectedTime || "00:00"}
                           onChange={handleTimeChange}
                           ampm={false}
                         />
@@ -148,7 +146,9 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
             <p className={s.error}>{errors.comment?.message}</p>
           </div>
 
-          <button type="submit">Send</button>
+          <button type="submit" className={s.btnSubmit}>
+            Send
+          </button>
         </form>
       </div>
     </div>,

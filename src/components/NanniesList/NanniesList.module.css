@@ -15,19 +15,7 @@
   max-width: 226px;
   position: relative;
 }
-/* .filter options {
-  width: 226px;
-  height: 48px;
-  border-radius: 14px;
-  background-color: #103931;
-  box-sizing: border-box;
-  padding-left: 16px;
-  padding-right: 16px;
-  color: #fbfbfb;
-  border: none;
-  appearance: none;
-  outline: none;
-} */
+
 .filterIcon {
   position: absolute;
   top: 40px;
@@ -38,9 +26,16 @@
   cursor: pointer;
   pointer-events: all;
 }
-/* .filter option {
-  background-color: #ffffff;
-  width: 226px;
-  border: none;
-  color: #11101c4d;
-} */
+
+.listContBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loadMore {
+  background-color: #103931;
+  color: #fbfbfb;
+  padding: 14px 40px;
+  border-radius: 30px;
+  margin-top: 64px;
+}
