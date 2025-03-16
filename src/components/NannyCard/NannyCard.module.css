@@ -49,6 +49,10 @@
   width: 26px;
   height: 26px;
 }
+.btnFav.active svg {
+  fill: #103931;
+  stroke: #103931;
+}
 .cardImg {
   width: 96px;
   height: 96px;

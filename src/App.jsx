@@ -13,11 +13,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<NanniesPage />} />
         <Route path="/favourites" element={<FavouritesPage />} />
-
-        {/* <Route path="/catalog/:id" element={<DetailsPage />}>
-          <Route path="features" element={<FeaturesById />} />
-          <Route path="reviews" element={<Reviews />} />
-        </Route> */}
       </Routes>
     </>
   );

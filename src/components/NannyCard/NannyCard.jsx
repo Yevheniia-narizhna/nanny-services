@@ -4,13 +4,39 @@ import { get, getDatabase, ref } from "firebase/database";
 import { getAge } from "../../utils/nannies";
 import { GoStarFill } from "react-icons/go";
 import Reviews from "../Reviews/Reviews";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../firebaseConfig";
+import {
+  addToFavorites,
+  checkIfFavorite,
+  removeFromFavorites,
+} from "../../utils/favourites";
 
 const NannyCard = ({ nanny }) => {
   const [age, setAge] = useState(null);
   const [showReviews, setShowReviews] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const userId = user?.uid;
 
   const handleClick = () => {
     setShowReviews(true);
+  };
+
+  const handleHeartClick = async () => {
+    if (!user) {
+      alert("You need to log in to add to favorites.");
+      return;
+    }
+
+    if (isFavorite) {
+      await removeFromFavorites(userId, nanny);
+      setIsFavorite(false);
+    } else {
+      await addToFavorites(userId, nanny);
+      setIsFavorite(true);
+    }
   };
 
   useEffect(() => {
@@ -18,6 +44,19 @@ const NannyCard = ({ nanny }) => {
       setAge(getAge(nanny.birthday));
     }
   }, [nanny.birthday]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        checkIfFavorite(currentUser.uid, nanny, setIsFavorite);
+      } else {
+        setIsFavorite(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [nanny]);
 
   return (
     <div className={s.card}>
@@ -45,7 +84,10 @@ const NannyCard = ({ nanny }) => {
             </li>
           </ul>
         </div>
-        <button className={s.btnFav}>
+        <button
+          className={`${s.btnFav} ${isFavorite ? s.active : ""}`}
+          onClick={handleHeartClick}
+        >
           <svg className={s.svgFav}>
             <use href="/symbol-defs.svg#icon-Property-1Normal"></use>
           </svg>
@@ -63,11 +105,15 @@ const NannyCard = ({ nanny }) => {
           </li>
           <li>
             Characters:{" "}
-            <span className={s.spanDet}>
-              {nanny.characters
-                .map((char) => char.charAt(0).toUpperCase() + char.slice(1))
-                .join(", ")}
-            </span>
+            {nanny.characters && nanny.characters.length > 0 ? (
+              <span className={s.spanDet}>
+                {nanny.characters
+                  .map((char) => char.charAt(0).toUpperCase() + char.slice(1))
+                  .join(", ")}
+              </span>
+            ) : (
+              <span>No characters available</span>
+            )}
           </li>
           <li>
             Education: <span className={s.spanDet}>{nanny.education}</span>
