@@ -1,0 +1,9 @@
+.favPage {
+  max-width: 1376px;
+  padding-top: 152px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Центрує по горизонталі */
+  align-items: center;
+}

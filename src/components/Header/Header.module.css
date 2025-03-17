@@ -23,6 +23,9 @@
   display: flex;
   gap: 32px;
 }
+.navigationHeader {
+  padding-left: 0;
+}
 .active {
   position: relative;
   display: inline-block;
@@ -45,7 +48,8 @@
   margin-right: 96px;
 }
 .btnLog,
-.btnReg {
+.btnReg,
+.btnLogout {
   background: transparent;
   padding: 14px 40px;
   border: 1px solid #fbfbfb66;
@@ -56,11 +60,7 @@
   background-color: #103931;
   border: none;
 }
-/* @media screen and (min-width: 1440px) {
-  .headerCont {
-    width: 100vw;
-  }
-} */
+
 .modalContent {
   /* position: fixed; */
   position: relative;
@@ -97,4 +97,47 @@
 .contLogReg {
   display: flex;
   gap: 8px;
+}
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.userInfo span {
+  color: #fbfbfb;
+  font-size: 18px;
+  font-weight: 500;
+}
+.svgUser {
+  background-color: #fbfbfb;
+  border-radius: 10px;
+  padding: 12px;
+  fill: #103931;
+  width: 16px;
+  height: 16px;
+}
+.btnLogout {
+  margin-left: 10px;
+}
+@media screen and (max-width: 1080px) {
+  .iconLogo {
+    width: 118px;
+    height: 20px;
+    padding-left: 0px;
+  }
+  .svgUser {
+    padding: 6px;
+  }
+  .navigation {
+    gap: 4px;
+  }
+  .catalogHeader {
+    font-size: 14px;
+  }
+  .userInfo span {
+    font-size: 14px;
+  }
+  .userInfo {
+    gap: 2px;
+  }
 }

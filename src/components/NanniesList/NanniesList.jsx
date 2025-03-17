@@ -76,11 +76,14 @@ const NanniesList = () => {
       </div>
       <div className={s.listContBtn}>
         <ul className={s.list}>
-          {filteredNannies.slice(0, visibleCount).map((nanny) => (
-            <li key={nanny.name}>
-              <NannyCard nanny={nanny} />
-            </li>
-          ))}
+          {filteredNannies
+            .slice(0, visibleCount)
+            .filter((nanny) => typeof nanny === "object")
+            .map((nanny) => (
+              <li key={nanny.name}>
+                <NannyCard nanny={nanny} />
+              </li>
+            ))}
         </ul>
 
         {visibleCount < filteredNannies.length && (

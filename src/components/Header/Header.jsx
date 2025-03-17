@@ -6,6 +6,7 @@ import Registration from "../Registration/Registration";
 import { IoCloseOutline } from "react-icons/io5";
 import { auth } from "../../../firebaseConfig";
 import { signOut } from "firebase/auth";
+import { BiSolidUser } from "react-icons/bi";
 
 const Header = () => {
   const location = useLocation();
@@ -35,7 +36,9 @@ const Header = () => {
   return (
     <div className={`${s.headerCont} ${isCatalogPage ? s.catalogHeader : ""}`}>
       <img className={s.iconLogo} src="/logo-nanny.svg" alt="Logo" />
-      <div className={s.navigation}>
+      <div
+        className={`${s.navigation} ${isCatalogPage ? s.navigationHeader : ""}`}
+      >
         <NavLink to="/" className={s.inactive}>
           Home
         </NavLink>
@@ -59,6 +62,9 @@ const Header = () => {
       <div className={s.btnCont}>
         {user ? (
           <div className={s.userInfo}>
+            <div className={s.svgUser}>
+              <BiSolidUser />
+            </div>
             <span>{user.displayName || "User"}</span>
             <button
               type="button"

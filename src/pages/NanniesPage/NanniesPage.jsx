@@ -1,8 +1,9 @@
 import NanniesList from "../../components/NanniesList/NanniesList";
+import s from "./NanniesPage.module.css";
 
 const NanniesPage = () => {
   return (
-    <div>
+    <div className={s.nanniesPage}>
       <NanniesList />
     </div>
   );

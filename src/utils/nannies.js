@@ -8,7 +8,9 @@ export const fetchNannies = (callback, errorCallback) => {
     (snapshot) => {
       if (snapshot.exists()) {
         const value = snapshot.val();
-        const nanniesArray = Object.values(value);
+        const nanniesArray = Object.values(value).filter(
+          (item) => typeof item === "object" && item.name
+        );
         callback(nanniesArray);
       } else {
         console.log("❌ Дані відсутні у Firebase!");
@@ -28,7 +30,9 @@ export const fetchNanniesCount = (callback, errorCallback) => {
     (snapshot) => {
       if (snapshot.exists()) {
         const value = snapshot.val();
-        const count = Object.values(value).length; // Підрахунок кількості
+        const count = Object.values(value).filter(
+          (item) => typeof item === "object" && item.name
+        ).length; // Підрахунок кількості
         callback(count);
       } else {
         console.log("❌ Дані відсутні у Firebase!");

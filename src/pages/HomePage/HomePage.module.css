@@ -1,8 +1,4 @@
 .homeCont {
   width: 1376px;
-  /* margin: 0 auto; */
   padding: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
