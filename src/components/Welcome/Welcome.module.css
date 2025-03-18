@@ -1,7 +1,7 @@
 .welcomeCont {
   display: flex;
   align-items: center;
-  width: 1376px;
+  width: 100%;
   height: 736px;
   border-radius: 30px;
   /* background-color: #103931; */
@@ -14,7 +14,7 @@
 }
 .contText {
   background-color: #103931;
-  width: 677px;
+  width: 100%;
   height: 736px;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
@@ -23,8 +23,8 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding-left: 96px;
-  padding-top: 251px;
+  padding-left: 28px;
+  padding-top: 150px;
 }
 .contImg {
   background-image: image-set(
@@ -34,10 +34,12 @@
   background-position: right center;
   background-repeat: no-repeat;
   height: 736px;
-  width: 699px;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 .title {
@@ -47,9 +49,9 @@
 }
 .textWelc {
   color: #fbfbfb;
-  font-size: 28px;
+  font-size: 20px;
   letter-spacing: -0.02em;
-  padding-bottom: 64px;
+  padding-bottom: 28px;
 }
 .btnWelc {
   display: flex;
@@ -99,11 +101,29 @@
   flex-direction: column;
   padding-left: 16px;
 }
-/* .expNann {
-  padding-left: 16px;
-} */
+
 .expNannCount {
   font-size: 24px;
   font-weight: 700;
   color: #11101c;
+}
+
+@media screen and (min-width: 1376px) {
+  .welcomeCont {
+    width: 1376px;
+  }
+  .contText {
+    width: 677px;
+  }
+  .contImg {
+    width: 699px;
+  }
+  .textWelc {
+    font-size: 28px;
+    padding-bottom: 64px;
+  }
+  .contTitle {
+    padding-left: 96px;
+    padding-top: 251px;
+  }
 }

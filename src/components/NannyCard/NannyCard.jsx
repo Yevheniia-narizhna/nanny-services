@@ -11,6 +11,8 @@ import {
   checkIfFavorite,
   removeFromFavorites,
 } from "../../utils/favourites";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const NannyCard = ({ nanny }) => {
   const [age, setAge] = useState(null);
@@ -26,7 +28,7 @@ const NannyCard = ({ nanny }) => {
 
   const handleHeartClick = async () => {
     if (!user) {
-      alert("You need to log in to add to favorites.");
+      toast.error("This feature is only available to authorized users.");
       return;
     }
 
@@ -92,6 +94,7 @@ const NannyCard = ({ nanny }) => {
             <use href="/symbol-defs.svg#icon-Property-1Normal"></use>
           </svg>
         </button>
+        <ToastContainer />
         <h3 className={s.name}>{nanny.name}</h3>
         <ul className={s.ulDetails}>
           <li>
@@ -123,7 +126,7 @@ const NannyCard = ({ nanny }) => {
         {!showReviews && (
           <button onClick={handleClick} className={s.btnRMore}>
             Read more
-          </button> // Кнопка "Read more"
+          </button>
         )}
         {showReviews && (
           <div className={s.revCont}>
