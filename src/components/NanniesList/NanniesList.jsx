@@ -2,26 +2,13 @@ import { useEffect, useState } from "react";
 import s from "./NanniesList.module.css";
 import NannyCard from "../NannyCard/NannyCard";
 import { fetchNannies } from "../../utils/nannies";
-import { IoIosArrowDown } from "react-icons/io";
-import Select from "react-select";
 import Filter, { filterOptions } from "../Filter/Filter";
-
-// const filterOptions = [
-//   { value: "alphabet-asc", label: "A to Z" },
-//   { value: "alphabet-desc", label: "Z to A" },
-//   { value: "rating-asc", label: "Not popular" },
-//   { value: "rating-desc", label: "Popular" },
-//   { value: "price-less", label: "Less than 10$" },
-//   { value: "price-greater", label: "Greater than 10$" },
-//   { value: "show-all", label: "Show all" },
-// ];
 
 const NanniesList = () => {
   const [nannies, setNannies] = useState([]);
   const [filteredNannies, setFilteredNannies] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState(filterOptions[0].value);
-  const [visibleCount, setVisibleCount] = useState(3); // Початково показуємо 3 нянь
-  // const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(3);
 
   useEffect(() => {
     fetchNannies((data) => {
@@ -62,10 +49,6 @@ const NanniesList = () => {
     setVisibleCount((prev) => prev + 3);
   };
 
-  // const toggleSelectOpen = () => {
-  //   setIsSelectOpen((prev) => !prev);
-  // };
-
   return (
     <div className={s.listCont}>
       <div className={s.filter}>
@@ -75,17 +58,20 @@ const NanniesList = () => {
         />
       </div>
       <div className={s.listContBtn}>
-        <ul className={s.list}>
-          {filteredNannies
-            .slice(0, visibleCount)
-            .filter((nanny) => typeof nanny === "object")
-            .map((nanny) => (
-              <li key={nanny.name}>
-                <NannyCard nanny={nanny} />
-              </li>
-            ))}
-        </ul>
-
+        {filteredNannies.length === 0 ? (
+          <p className={s.noResults}>Nothing found</p>
+        ) : (
+          <ul className={s.list}>
+            {filteredNannies
+              .slice(0, visibleCount)
+              .filter((nanny) => typeof nanny === "object")
+              .map((nanny) => (
+                <li key={nanny.name}>
+                  <NannyCard nanny={nanny} />
+                </li>
+              ))}
+          </ul>
+        )}
         {visibleCount < filteredNannies.length && (
           <button onClick={loadMore} className={s.loadMore}>
             Load More

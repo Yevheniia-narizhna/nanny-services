@@ -1,8 +1,3 @@
-.listCont {
-  /* padding-top: 152px;
-  padding-left: 128px; */
-}
-
 .list {
   display: flex;
   flex-direction: column;

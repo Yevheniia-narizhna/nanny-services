@@ -5,14 +5,14 @@ import { fetchNanniesCount } from "../../utils/nannies";
 import { useEffect, useState } from "react";
 
 const Welcome = () => {
-  const [nanniesCount, setNanniesCount] = useState(0); // Стан для кількості нянь
-  const [error, setError] = useState(null); // Стан для помилки
+  const [nanniesCount, setNanniesCount] = useState(0);
+  const [error, setError] = useState(null);
   const navCatalog = useNavigate();
 
   useEffect(() => {
     fetchNanniesCount(
       (count) => {
-        setNanniesCount(count); // Оновлюємо кількість нянь
+        setNanniesCount(count);
       },
       (error) => {
         setError(error);

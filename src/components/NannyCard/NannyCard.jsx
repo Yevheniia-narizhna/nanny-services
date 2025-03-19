@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import s from "./NannyCard.module.css";
-import { get, getDatabase, ref } from "firebase/database";
 import { getAge } from "../../utils/nannies";
 import { GoStarFill } from "react-icons/go";
 import Reviews from "../Reviews/Reviews";

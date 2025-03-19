@@ -36,12 +36,12 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
   const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
   const handleIconClick = () => {
-    setIsTimePickerOpen((prev) => !prev); // Перемикає стан видимості вікна
+    setIsTimePickerOpen((prev) => !prev); 
   };
 
   const handleTimeChange = (newTime) => {
-    setSelectedTime(newTime); // оновлює вибраний час
-    setIsTimePickerOpen(false); // закриває вибір часу після вибору
+    setSelectedTime(newTime); 
+    setIsTimePickerOpen(false); 
   };
   const {
     register,
@@ -89,12 +89,12 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
                 {...register("phone")}
                 placeholder="+380"
                 onChange={(e) => {
-                  let value = e.target.value.replace(/\D/g, ""); // Видаляємо всі нецифрові символи
+                  let value = e.target.value.replace(/\D/g, ""); 
                   if (!value.startsWith("380")) {
-                    value = "380" + value.replace(/^380/, ""); // Додаємо 380, якщо його немає
+                    value = "380" + value.replace(/^380/, ""); 
                   }
                   e.target.value = "+" + value;
-                  setValue("phone", "+" + value, { shouldValidate: true }); // Оновлюємо значення для React Hook Form
+                  setValue("phone", "+" + value, { shouldValidate: true }); 
                 }}
               />
               <p className={s.error}>{errors.phone?.message}</p>
@@ -104,17 +104,17 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
                   <div className={s.timePickerWrapp}>
                     <input
                       className={s.timeInput}
-                      value={selectedTime.format("HH:mm") || "00:00"} // Виводимо вибраний час в форматі "HH:mm"
-                      onClick={handleIconClick} // Відкриває вибір часу при натисканні
+                      value={selectedTime.format("HH:mm") || "00:00"} 
+                      onClick={handleIconClick} 
                       readOnly
                     />
-                    {/* Іконка годинника, при натисканні відкривається вибір часу */}
+                
                     <FaRegClock
                       className={s.clockIcon}
                       onClick={handleIconClick}
                     />
 
-                    {/* Якщо isTimePickerOpen true, показуємо MultiSectionDigitalClock */}
+                    
                     {isTimePickerOpen && (
                       <div className={s.timePicker}>
                         <p className={s.timePickerText}>Meeting time</p>

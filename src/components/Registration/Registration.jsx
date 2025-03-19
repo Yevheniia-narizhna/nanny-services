@@ -42,9 +42,8 @@ const Registration = ({ setIsModalOpen }) => {
       await updateProfile(userCredential.user, { displayName: data.name });
       setIsModalOpen(false);
       navigate("/catalog");
-      // alert("Реєстрація успішна!");
     } catch (error) {
-      // alert(error.message);
+      error.message;
     }
   };
 

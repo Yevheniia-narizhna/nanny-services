@@ -19,7 +19,6 @@
 }
 
 .navigation {
-  /* padding-left: 450px; */
   display: flex;
   gap: 32px;
 }
@@ -62,7 +61,6 @@
 }
 
 .modalContent {
-  /* position: fixed; */
   position: relative;
   top: 50%;
   left: 50%;
@@ -73,6 +71,16 @@
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 999;
+  animation: ani 0.5s ease-in-out forwards;
+}
+
+@keyframes ani {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .modalOverlay {
@@ -97,10 +105,6 @@
   align-items: center;
 }
 
-/* .catalogHeader .btnLog,
-.btnReg {
-  border: none;
-} */
 .catalogHeader .activeBtn {
   border: 1px solid #fbfbfb66;
   background-color: #fbfbfb;

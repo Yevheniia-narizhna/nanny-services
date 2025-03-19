@@ -7,7 +7,7 @@ import Filter, { filterOptions } from "../Filter/Filter";
 import s from "./Favorites.module.css";
 
 const Favorites = () => {
-  const [favorites, setFavorites] = useState([]); // Стан для зберігання улюблених нянь
+  const [favorites, setFavorites] = useState([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [filteredNannies, setFilteredNannies] = useState([]);
@@ -15,33 +15,31 @@ const Favorites = () => {
   const [visibleCount, setVisibleCount] = useState(3);
 
   useEffect(() => {
-    // Підписка на зміну стану аутентифікації
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        fetchFavorites(currentUser.uid); // Якщо користувач є, завантажуємо його обрані
+        fetchFavorites(currentUser.uid);
       } else {
         setUser(null);
-        setFavorites([]); // Якщо користувач не авторизований, очищаємо улюблені
+        setFavorites([]);
       }
     });
 
     return () => unsubscribe();
   }, []);
 
-  // Функція для завантаження обраних
   const fetchFavorites = async (userId) => {
     setLoading(true);
     const db = getDatabase();
     const favoritesRef = ref(db, `favorites/${userId}`);
-    const snapshot = await get(favoritesRef); // Отримуємо дані з Firebase
+    const snapshot = await get(favoritesRef);
     if (snapshot.exists()) {
-      const favoritesData = snapshot.val(); // Отримуємо всі обрані
+      const favoritesData = snapshot.val();
       const favoritesList = Object.keys(favoritesData).map((nannyName) => ({
-        name: nannyName, // Для кожної няні створюємо об'єкт з її ім'ям
-        ...favoritesData[nannyName], // Якщо є інші дані (можна додавати їх тут)
+        name: nannyName,
+        ...favoritesData[nannyName],
       }));
-      setFavorites(favoritesList); // Оновлюємо список обраних
+      setFavorites(favoritesList);
       setFilteredNannies(favoritesList);
     }
     setLoading(false);
@@ -50,7 +48,6 @@ const Favorites = () => {
   const handleFilterChange = (selectedOption) => {
     let updatedNannies = [...favorites];
 
-    // Фільтрація обраних за різними критеріями
     if (selectedOption.value === "alphabet-asc") {
       updatedNannies.sort((a, b) => a.name.localeCompare(b.name));
     } else if (selectedOption.value === "alphabet-desc") {
@@ -73,12 +70,11 @@ const Favorites = () => {
 
     setFilteredNannies(updatedNannies);
     setSelectedFilter(selectedOption.value);
-    setVisibleCount(3); // Скидаємо лічильник на початкову кількість
+    setVisibleCount(3);
   };
 
-  // Завантаження наступних 3 карточок
   const loadMore = () => {
-    setVisibleCount((prev) => prev + 3); // Завантажуємо по 3 нові карточки
+    setVisibleCount((prev) => prev + 3);
   };
 
   return (
@@ -90,14 +86,17 @@ const Favorites = () => {
         />
       </div>
       <div className={s.listContBtn}>
-        <ul className={s.list}>
-          {filteredNannies.slice(0, visibleCount).map((nanny) => (
-            <li key={nanny.name}>
-              <NannyCard nanny={nanny} />
-            </li>
-          ))}
-        </ul>
-
+        {filteredNannies.length === 0 ? (
+          <p className={s.noResults}>Nothing found</p>
+        ) : (
+          <ul className={s.list}>
+            {filteredNannies.slice(0, visibleCount).map((nanny) => (
+              <li key={nanny.name}>
+                <NannyCard nanny={nanny} />
+              </li>
+            ))}
+          </ul>
+        )}
         {visibleCount < filteredNannies.length && (
           <button onClick={loadMore} className={s.loadMore}>
             Load More

@@ -19,6 +19,19 @@
   position: relative;
   margin-top: 100px;
   box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .btnModal {
   position: absolute;
@@ -81,7 +94,6 @@
   padding-bottom: 40px;
 }
 .timePicker {
-  /* max-width: 151px; */
   max-height: 180px;
   background-color: #ffffff;
   border-radius: 12px;
@@ -135,15 +147,15 @@
   weight: 500;
 }
 .timePickerD {
-  overflow: hidden; /* Прибирає прокручування для DigitalClock */
+  overflow: hidden;
 }
 
 .timePickerD::-webkit-scrollbar {
-  display: none; /* Прибирає скролбар у Webkit-браузерах */
+  display: none;
 }
 
 .timePickerD {
-  scrollbar-width: none; /* Для Firefox */
+  scrollbar-width: none;
 }
 .btnSubmit {
   background-color: #103931;

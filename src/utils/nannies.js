@@ -17,7 +17,6 @@ export const fetchNannies = (callback, errorCallback) => {
       }
     },
     (error) => {
-      console.error("Firebase помилка:", error);
       errorCallback(error);
     }
   );
@@ -32,15 +31,14 @@ export const fetchNanniesCount = (callback, errorCallback) => {
         const value = snapshot.val();
         const count = Object.values(value).filter(
           (item) => typeof item === "object" && item.name
-        ).length; // Підрахунок кількості
+        ).length;
         callback(count);
       } else {
         console.log("❌ Дані відсутні у Firebase!");
-        callback(0); // Повертаємо 0, якщо дані відсутні
+        callback(0);
       }
     },
     (error) => {
-      console.error("Firebase помилка:", error);
       errorCallback(error);
     }
   );
@@ -51,7 +49,6 @@ export function getAge(birthday) {
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
 
-  // Перевіряємо, чи вже був день народження цього року
   const monthDiff = today.getMonth() - birthDate.getMonth();
   if (
     monthDiff < 0 ||

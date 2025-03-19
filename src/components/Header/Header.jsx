@@ -48,14 +48,16 @@ const Header = () => {
         >
           Nannies
         </NavLink>
-        {user && location.pathname === "/catalog" && (
-          <NavLink
-            to="/favorites"
-            className={({ isActive }) => (isActive ? s.active : s.inactive)}
-          >
-            Favorites
-          </NavLink>
-        )}
+        {user &&
+          (location.pathname === "/catalog" ||
+            location.pathname === "/favorites") && (
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) => (isActive ? s.active : s.inactive)}
+            >
+              Favorites
+            </NavLink>
+          )}
       </div>
       <div className={s.btnCont}>
         {user ? (

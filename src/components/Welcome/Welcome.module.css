@@ -4,13 +4,6 @@
   width: 100%;
   height: 736px;
   border-radius: 30px;
-  /* background-color: #103931; */
-  /* background-image: image-set(
-    url("/src/img/Rectangle-x2.jpg") 2x,
-    url("/src/img/Rectangle-x1.jpg") 1x
-  );
-  background-position: right center;
-  background-repeat: no-repeat; */
 }
 .contText {
   background-color: #103931;
@@ -75,8 +68,6 @@
 .contCount {
   display: flex;
   background-color: #fbfbfb;
-  /* width: 284px;
-  height: 118px; */
   border-radius: 20px;
   align-items: center;
   margin-bottom: 50px;

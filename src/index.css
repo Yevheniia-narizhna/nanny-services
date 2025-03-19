@@ -13,11 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
+
 a {
   font-weight: 400;
   text-decoration: none;
@@ -30,16 +26,16 @@ body {
   display: flex;
 }
 body {
-  overflow: auto; /* Для всіх браузерів */
+  overflow: auto; 
 }
 
 body::-webkit-scrollbar {
-  width: 8px; /* Ширина скролбару */
+  width: 8px; 
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3); /* Колір скролбару */
-  border-radius: 10px; /* Краї скролбару */
+  background-color: rgba(0, 0, 0, 0.3); 
+  border-radius: 10px; 
 }
 h1 {
   font-size: 70px;
