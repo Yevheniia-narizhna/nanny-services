@@ -35,7 +35,7 @@ const Header = () => {
 
   return (
     <div className={`${s.headerCont} ${isCatalogPage ? s.catalogHeader : ""}`}>
-      <img className={s.iconLogo} src="/logo-nanny.svg" alt="Logo" />
+      <img className={s.iconLogo} src="/nanny-services.png" alt="Logo" />
       <div
         className={`${s.navigation} ${isCatalogPage ? s.navigationHeader : ""}`}
       >
