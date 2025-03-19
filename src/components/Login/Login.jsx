@@ -3,8 +3,10 @@ import { auth } from "../../../firebaseConfig";
 import { useForm } from "react-hook-form";
 import s from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Login = ({ setIsModalOpen }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
   const {
     register,
@@ -17,9 +19,8 @@ const Login = ({ setIsModalOpen }) => {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       setIsModalOpen(false);
       navigate("/catalog");
-      // alert("Вхід успішний!");
     } catch (error) {
-      // alert(error.message);
+      error.message;
     }
   };
 
@@ -40,11 +41,30 @@ const Login = ({ setIsModalOpen }) => {
         {errors.email && <p>{errors.email.message}</p>}
 
         <input
-          type="password"
+          type={passwordVisible ? "text" : "password"}
           placeholder="Password"
           {...register("password", { required: "Password is required" })}
           className={s.formLogInp}
         />
+        <span
+          className={s.spanIcons}
+          onClick={() => setPasswordVisible((prev) => !prev)}
+        >
+          <svg
+            className={s.svgSingUp}
+            width="20"
+            height="20"
+            viewBox="0 0 32 32"
+            fill="#000"
+            stroke="#000"
+          >
+            <use
+              href={`/sprite.svg#${
+                passwordVisible ? "icon-eye" : "icon-eye-off"
+              }`}
+            ></use>
+          </svg>
+        </span>
         {errors.password && <p>{errors.password.message}</p>}
 
         <button type="submit" className={s.btnLog}>
