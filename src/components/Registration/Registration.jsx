@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { auth } from "../../../firebaseConfig";
 import s from "./Registration.module.css";
 import { useNavigate } from "react-router-dom";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   name: yup
@@ -19,6 +21,7 @@ const schema = yup.object().shape({
 });
 
 const Registration = ({ setIsModalOpen }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -53,30 +56,39 @@ const Registration = ({ setIsModalOpen }) => {
         need some information. Please provide us with the following information.
       </p>
       <form onSubmit={handleSubmit(onSubmit)} className={s.formReg}>
-        <input
-          type="text"
-          placeholder="Name"
-          {...register("name")}
-          className={s.formRegInp}
-        />
-        {errors.name && <p>{errors.name.message}</p>}
-
-        <input
-          type="email"
-          placeholder="Email"
-          {...register("email")}
-          className={s.formRegInp}
-        />
-        {errors.email && <p>{errors.email.message}</p>}
-
-        <input
-          type="password"
-          placeholder="Password"
-          {...register("password")}
-          className={s.formRegInp}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
-
+        <div className={s.divRegInp}>
+          <input
+            type="text"
+            placeholder="Name"
+            {...register("name")}
+            className={s.formRegInp}
+          />
+          {errors.name && <p>{errors.name.message}</p>}
+        </div>
+        <div className={s.divRegInp}>
+          <input
+            type="email"
+            placeholder="Email"
+            {...register("email")}
+            className={s.formRegInp}
+          />
+          {errors.email && <p>{errors.email.message}</p>}
+        </div>
+        <div className={s.divRegInp}>
+          <input
+            type={passwordVisible ? "text" : "password"}
+            placeholder="Password"
+            {...register("password")}
+            className={s.formRegInp}
+          />
+          <span
+            className={s.spanIcons}
+            onClick={() => setPasswordVisible((prev) => !prev)}
+          >
+            {passwordVisible ? <FiEye size={20} /> : <FiEyeOff size={20} />}
+          </span>
+          {errors.password && <p>{errors.password.message}</p>}
+        </div>
         <button type="submit" className={s.btnRegist}>
           Sign Up
         </button>

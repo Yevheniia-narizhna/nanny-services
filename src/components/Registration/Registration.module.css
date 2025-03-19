@@ -4,12 +4,13 @@
   gap: 18px;
 }
 .formRegInp {
-  /* height: 52px; */
   padding: 16px 18px;
   border-radius: 12px;
   border: 1px solid #11101c1a;
   font-size: 16px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 .formRegInp::placeholder {
   color: #11101c;
@@ -26,4 +27,16 @@
 .textReg {
   padding-bottom: 40px;
   padding-top: 20px;
+}
+.divRegInp {
+  position: relative;
+}
+.spanIcons {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

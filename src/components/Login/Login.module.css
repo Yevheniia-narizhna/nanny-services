@@ -14,6 +14,8 @@
   border: 1px solid #11101c1a;
   font-size: 16px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 .btnLog {
   background-color: #103931;
@@ -21,4 +23,17 @@
   border-radius: 30px;
   color: #fbfbfb;
   margin-top: 22px;
+}
+.divLogInp {
+  position: relative;
+}
+
+.spanIcons {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
