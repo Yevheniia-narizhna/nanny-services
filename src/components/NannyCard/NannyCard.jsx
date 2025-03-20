@@ -25,9 +25,17 @@ const NannyCard = ({ nanny }) => {
     setShowReviews(true);
   };
 
-  const handleHeartClick = async () => {
+  const handleHeartClick = async (event) => {
     if (!user) {
-      toast.error("This feature is only available to authorized users.");
+      const rect = event.target.getBoundingClientRect();
+      toast.error("This feature is only available to authorized users.", {
+        position: "top-left",
+        style: {
+          position: "absolute",
+          top: `${rect.top + window.scrollY - 50}px`,
+          left: `${rect.left - 400}px`,
+        },
+      });
       return;
     }
 
@@ -93,7 +101,7 @@ const NannyCard = ({ nanny }) => {
             <use href="/symbol-defs.svg#icon-Property-1Normal"></use>
           </svg>
         </button>
-        <ToastContainer />
+        <ToastContainer draggable={false} closeOnClick={false} />
         <h3 className={s.name}>{nanny.name}</h3>
         <ul className={s.ulDetails}>
           <li>

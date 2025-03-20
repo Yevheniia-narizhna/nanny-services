@@ -15,10 +15,7 @@ const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
   phone: yup
     .string()
-    .matches(
-      /^(\+380\d{9})$/,
-      "The phone number must be in the format +380XXXXXXXXX"
-    )
+    .matches(/^(\+380\d{9})$/, "Invalid phone number")
     .required("Phone is required"),
   address: yup.string().required("Address is required"),
   childAge: yup
@@ -36,12 +33,12 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
   const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
   const handleIconClick = () => {
-    setIsTimePickerOpen((prev) => !prev); 
+    setIsTimePickerOpen((prev) => !prev);
   };
 
   const handleTimeChange = (newTime) => {
-    setSelectedTime(newTime); 
-    setIsTimePickerOpen(false); 
+    setSelectedTime(newTime);
+    setIsTimePickerOpen(false);
   };
   const {
     register,
@@ -73,48 +70,39 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
           <div className={s.formCont}>
             <div className={s.formContFirst}>
-              <input {...register("address")} placeholder="Address" />
-              <p className={s.error}>{errors.address?.message}</p>
-
-              <input
-                type="number"
-                {...register("childAge")}
-                placeholder="Child's Age"
-              />
-              <p className={s.error}>{errors.childAge?.message}</p>
+              <div className={s.inputWrapper}>
+                <input {...register("address")} placeholder="Address" />
+                <p className={s.error}>{errors.address?.message}</p>
+              </div>
+              <div className={s.inputWrapper}>
+                <input
+                  type="number"
+                  {...register("childAge")}
+                  placeholder="Child's Age"
+                />
+                <p className={s.error}>{errors.childAge?.message}</p>
+              </div>
             </div>
             <div className={s.formContSecond}>
-              <input
-                type="tel"
-                {...register("phone")}
-                placeholder="+380"
-                onChange={(e) => {
-                  let value = e.target.value.replace(/\D/g, ""); 
-                  if (!value.startsWith("380")) {
-                    value = "380" + value.replace(/^380/, ""); 
-                  }
-                  e.target.value = "+" + value;
-                  setValue("phone", "+" + value, { shouldValidate: true }); 
-                }}
-              />
-              <p className={s.error}>{errors.phone?.message}</p>
-
+              <div className={s.inputWrapper}>
+                <input type="tel" {...register("phone")} placeholder="+380" />
+                <p className={s.error}>{errors.phone?.message}</p>
+              </div>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <div className={s.timePickerCont}>
-                  <div className={s.timePickerWrapp}>
+                  <div className={`${s.inputWrapper} ${s.timePickerWrapp}`}>
                     <input
                       className={s.timeInput}
-                      value={selectedTime.format("HH:mm") || "00:00"} 
-                      onClick={handleIconClick} 
+                      value={selectedTime.format("HH:mm") || "00:00"}
+                      onClick={handleIconClick}
                       readOnly
                     />
-                
+
                     <FaRegClock
                       className={s.clockIcon}
                       onClick={handleIconClick}
                     />
 
-                    
                     {isTimePickerOpen && (
                       <div className={s.timePicker}>
                         <p className={s.timePickerText}>Meeting time</p>
@@ -133,17 +121,21 @@ const Modal = ({ isOpen, onClose, onSubmit, nanny }) => {
             </div>
           </div>
           <div>
-            <input type="email" {...register("email")} placeholder="Email" />
-            <p className={s.error}>{errors.email?.message}</p>
-
-            <input
-              {...register("name")}
-              placeholder="Father's or mother's name"
-            />
-            <p className={s.error}>{errors.name?.message}</p>
-
-            <textarea {...register("comment")} placeholder="Comment" />
-            <p className={s.error}>{errors.comment?.message}</p>
+            <div className={s.inputWrapper}>
+              <input type="email" {...register("email")} placeholder="Email" />
+              <p className={s.error}>{errors.email?.message}</p>
+            </div>
+            <div className={s.inputWrapper}>
+              <input
+                {...register("name")}
+                placeholder="Father's or mother's name"
+              />
+              <p className={s.error}>{errors.name?.message}</p>
+            </div>
+            <div className={s.inputWrapper}>
+              <textarea {...register("comment")} placeholder="Comment" />
+              <p className={s.error}>{errors.comment?.message}</p>
+            </div>
           </div>
 
           <button type="submit" className={s.btnSubmit}>

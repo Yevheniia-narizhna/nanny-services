@@ -97,6 +97,7 @@
   background-color: transparent;
   padding: 0;
   position: relative;
+  color: #11101c;
 }
 .btnRMore::after {
   content: "";
