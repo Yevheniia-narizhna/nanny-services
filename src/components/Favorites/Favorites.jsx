@@ -26,7 +26,7 @@ const Favorites = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [favorites]);
 
   const fetchFavorites = async (userId) => {
     setLoading(true);

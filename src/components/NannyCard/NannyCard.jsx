@@ -46,6 +46,7 @@ const NannyCard = ({ nanny }) => {
       await addToFavorites(userId, nanny);
       setIsFavorite(true);
     }
+    fetchFavorites(userId);
   };
 
   useEffect(() => {
